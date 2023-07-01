@@ -12,6 +12,20 @@ function App() {
   const rest=()=>{
     setcount((c)=>0)
   }
+  const prime=(n)=>{
+    let ct=0;
+    for(let i=0; i<=n; i++){
+      if(n%i==0){
+        ct++
+      }
+    }
+    if(ct==2){
+      return true
+    }
+    else{
+      return false 
+    }
+  }
   return (
     <div>
       <div>
@@ -24,8 +38,8 @@ function App() {
       <span data-testid="counter" >{count}</span>
       <div>
 
-        <span data-testid="odd-or-even" ></span>
-        <span data-testid="is-prime"></span>
+        <span data-testid="odd-or-even" >{count%2==0?"Even":"Odd"}</span>
+        <span data-testid="is-prime">{prime(count)?"True":"False"}</span>
         
       </div>
     </div>
