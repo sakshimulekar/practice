@@ -2,7 +2,7 @@
   "pitches": [
     {
       "title": "Beyond Snack Kerala Banana Chips",
-      "price": 50,
+      "price": "5000",
       "percentage": 2.5,
       "description": "The glory of Kerala-special banana chips spread far and wide. The fresh bananas grown in local fields and farms are cleaned, cut and cooked in pure oil to make the tastiest banana chips ever.",
       "founder": "Manas Madhu",
@@ -12,15 +12,12 @@
       "id": 1
     },
     {
+      "id": 2,
       "title": "Bamboo India",
-      "price": "100",
-      "percentage": 3.5,
-      "description": "plastic products replacement using innovative Bamboo Products like Bamboo Toothbrush, Bamboo Earbuds, corporate Gift articles & many more. It’s not for the income, but for the outcome",
-      "founder": "Sairaj Dhond",
+      "image": "https://m.media-amazon.com/images/I/81MJ4Eic6YL._AC_CR0%2C0%2C0%2C0_SX615_SY462_.jpg",
+      "founder": "Sakshi Mulekar",
       "category": "Food",
-      "year": "15-08-2016",
-      "image": "https://cdn.shopify.com/s/files/1/0560/4166/8681/products/standard-4_ed1a94bb-4732-4a3c-a047-5d045e60c231_500x.png?v=1649829355",
-      "id": 2
+      "price": "100"
     },
     {
       "image": "https://m.media-amazon.com/images/I/81MJ4Eic6YL._AC_CR0%2C0%2C0%2C0_SX615_SY462_.jpg",
@@ -233,7 +230,7 @@
     },
     {
       "image": "https://m.media-amazon.com/images/I/61pq3ae629L._AC_UY327_FMwebp_QL65_.jpg",
-      "price": "80",
+      "price": 45,
       "percentage": 10,
       "description": "HoloKitab is an edTech platform that enables book publishers and manufacturers from various industries to deliver Augmented Reality content to their users in a cost effective way.",
       "founder": "Dipanshu Bajaj and Nikhil Miglani",
@@ -243,11 +240,11 @@
       "id": 22
     },
     {
-      "title": "Bamboo India",
-      "image": "https://m.media-amazon.com/images/I/819GDpbJp3L._AC_UL480_FMwebp_QL65_.jpg",
-      "category": "Personal Care",
-      "founder": "Sairaj Dhond",
-      "price": "80",
+      "title": "Beyond Snack",
+      "image": "https://m.media-amazon.com/images/I/81MJ4Eic6YL._AC_CR0%2C0%2C0%2C0_SX615_SY462_.jpg",
+      "category": "Food",
+      "founder": "Ashwini Shinde",
+      "price": "500",
       "id": 23
     }
   ]
