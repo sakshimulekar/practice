@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourites Page</title>
+    <style>
+      /* All Your css for Favourites page goes here  */
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Masai Restaurant Finder</h1>
+      <a href="./index.html">Home</a>
+      <a href="./favourites.html">Favourites</a>
+    </div>
+    <h1 id="total">Your a total <span id="fav-total">0</span> elements in the favourites</h1>
+    <div id="fav-container">
+      <!-- Here Append All the Favourites-->
+    </div>
+  </body>
+  <script>
+    // All your JS code for Favourites Page goes here
+    let Ftotal = document.getElementById("total")
+    let lsdata = JSON.parse(localStorage.getItem("favourites"))||[]
+    console.log("data",lsdata)
+    fetchData(lsdata)
+
+    // let handlefilter=(id)=>{
+    //   //console.log(id)
+    //   let filtered=lsdata.filter(e=>e.id!==id)
+    //   localStorage.setItem("favorites",filtered)
+    //   fetchData(filtered)
+    // }
+    
+    
+    function fetchData(data){
+      //e.preventDefault()
+      let container=document.getElementById("fav-container")
+      container.innerHTML=null;
+      Ftotal.innerText=`Your a total ${data.length} elements in the favourites`
+        data.map((el)=>{
+
+          let div=document.createElement("div")
+          
+          let img = document.createElement("img")
+          img.setAttribute("src",el.image)
+
+          let title=document.createElement("h1")
+          title.innerText=el.name
+
+          let price=document.createElement("p")
+          price.innerText=el.price_starts_from
+
+          let type=document.createElement("p")
+          type.innerText=el.type
+
+          let rating=document.createElement("p")
+          rating.innerText=el.rating
+
+          let btn=document.createElement("button")
+          btn.innerText="delete"
+          
+          btn.addEventListener("click",()=>{
+            lsdata.splice(el,1)
+            localStorage.setItem("favorites",lsdata)
+            fetchData(lsdata)
+          })
+          
+
+          div.append(img,title,price,type,rating,btn)
+          container.append(div)
+        })
+    }
+    //fetchData(lsdata)
+    
+  </script>
+</html>
