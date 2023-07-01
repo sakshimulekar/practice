@@ -23,8 +23,10 @@ function App() {
       </div>
       <span data-testid="counter" >{count}</span>
       <div>
+
         <span data-testid="odd-or-even" ></span>
         <span data-testid="is-prime"></span>
+        
       </div>
     </div>
   );
