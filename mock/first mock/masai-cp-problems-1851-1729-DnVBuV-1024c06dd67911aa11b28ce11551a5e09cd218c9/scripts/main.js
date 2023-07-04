@@ -27,7 +27,9 @@ let updatePitchPriceInput = document.getElementById("update-pitch-price");
 let updatePitchBtn = document.getElementById("update-pitch");
 updatePitchBtn.addEventListener("click",async(e)=>{
   e.preventDefault()
-  if(updatePitchIdInput.value!=="" && updatePitchTitleInput.value!=="" && updatePitchImageInput.value!=="" && updatePitchfounderInput.value!=="" && updatePitchCategoryInput.value!=="" && updatePitchPriceInput.value!==""){
+  if(updatePitchIdInput.value!=="" && updatePitchTitleInput.value!=="" && updatePitchImageInput.value!=="" && 
+  updatePitchfounderInput.value!=="" && updatePitchCategoryInput.value!=="" && updatePitchPriceInput.value!=="")
+  {
     let obj={
       id:updatePitchIdInput.value,
       title:updatePitchTitleInput.value,
@@ -112,46 +114,61 @@ filterPersonalCare.addEventListener("click",()=>{
 
 })
 
-searchByButton.addEventListener("click",search)
+searchByButton.addEventListener("click",()=>{
+  let searchbox=document.getElementById("search-by-input").value
+  searchbox.toLowerCase()
+  console.log(searchbox)
+  console.log(sortdata,"119")
+  let searching=sortdata.filter((e)=>{
+    let productname=e.title.toLowerCase()
+    console.log(productname)
+    return productname.includes(searchbox)
+  })
+  console.log(searching,"125")
+  mainData(searching)
 
-async function search(){
-  let title=searchBySelect.value
-  let founder=searchByInput.value
-  console.log(title)
-  if(title=="title"){
-    try {
-      let req=await fetch(`${baseServerURL}/pitches?${title}_like=${founder}`)
-      let sdata=await req.json()
-      dat=sdata
-      mainData(dat)
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-  else if(title=="founder"){
-    try {
-      let req=await fetch(`${baseServerURL}/pitches?${title}_like=${founder}`)
-      let sdata=await req.json()
-      console.log(sdata)
-      dat=sdata
-      mainData(dat)
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-}
+})
 
+// async function search(){
+//   let title=searchBySelect.value
+//   let founder=searchByInput.value
+//   console.log(title)
+//   if(title=="title"){
+//     try {
+//       let req=await fetch(`${baseServerURL}/pitches?${title}_like=${founder}`)
+//       let sdata=await req.json()
+//       dat=sdata
+//       mainData(dat)
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   }
+//   else if(title=="founder"){
+//     try {
+//       let req=await fetch(`${baseServerURL}/pitches?${title}_like=${founder}`)
+//       let sdata=await req.json()
+//       console.log(sdata)
+//       dat=sdata
+//       mainData(dat)
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   }
+// }
 
+let current=1
 window.addEventListener("load",()=>fetchData())
 
 function fetchData(){
   fetch(`${pitchURL}`)
   .then(res=>res.json())
   .then(res=>{
-    console.log(res)
+
+    console.log(res.length)
     sortdata=res
     dat=res
-    mainData(res)
+    mainData(res,current)
+    addPagination(res)
   })
   .catch(err=>console.log(err))
 }
@@ -178,11 +195,14 @@ function cardData(dataid,image,title,founder,category,price){
 }
 
 
-function mainData(res){
+function mainData(res,page){
   mainSection.innerHTML=null
+  let start=(page-1)*3
+  let end=start+3
+  let slicedata=res.slice(start,end)
   let list=`
   <div class="card-list">
-    ${res?.map((e)=>{
+    ${slicedata?.map((e)=>{
       return (
         cardData(e.id,e.image,e.title,e.founder,e.category,e.price)
       )
@@ -191,7 +211,7 @@ function mainData(res){
   `
   
   mainSection.innerHTML=list
-
+console.log(mainSection)
   let delbtns=document.getElementsByClassName("card-button")
   for(let i=0; i<delbtns.length; i++){
     let btn=delbtns[i]
@@ -251,3 +271,22 @@ updatePricePitchPriceButton.addEventListener("click",async(e)=>{
     fetchData()
   }
 })
+//pagination
+function addPagination(data){
+  let totalpage=Math.ceil(data.length/3)
+  //console.log(totalpage)
+  let pagecard=document.getElementById("page-wrapper")
+  pagecard.innerHTML=null
+  for(let i=1; i<=totalpage; i++){
+    let btns=document.createElement("button")
+    btns.innerText=i
+    btns.addEventListener("click",()=>{
+      current=i
+      mainData(data,current)
+    })
+    pagecard.append(btns)
+  }
+}
+
+
+
