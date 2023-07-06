@@ -32,6 +32,7 @@ const ProductList = () => {
       {prod?.length && prod?.map((e)=><ProductCard key={e.id} {...e}/>)}
     </div>
   )
+  
 }
 
 export default ProductList
