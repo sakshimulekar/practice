@@ -1,0 +1,4 @@
+export const PRODUCT_REQ="PRODUCT_REQ";
+export const PRODUCT_SUCC="PRODUCT_SUCC";
+export const PRODUCT_FAIL="PRODUCT_FAIL";
+export const PRODUCT_DEL="PRODUCT_DEL";

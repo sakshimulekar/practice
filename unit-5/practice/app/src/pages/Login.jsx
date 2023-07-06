@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/authreducer/action'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const obj={
     email:"",
@@ -8,8 +9,10 @@ const obj={
 }
 const Login = () => {
     const [data,setdata]=useState(obj)
+    const location=useLocation()
     const isAuth=useSelector(store=>store.authreducer.isAuth)
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const handleChange=(e)=>{
         const {name,value}=e.target
         setdata((prev)=>{
@@ -19,7 +22,12 @@ const Login = () => {
     const handleSub=(e)=>{
         e.preventDefault();
         console.log(data)
-        dispatch(login(data))
+        dispatch(login(data)).then(()=>{
+          console.log(location.state)
+          navigate(location.state)
+          
+        })
+        setdata(obj)
     }
     console.log(isAuth)
   return (

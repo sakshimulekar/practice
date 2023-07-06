@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actiontype"
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST } from "./actiontype"
 import axios from "axios";
 
 export const login=(obj)=>(dispatch)=>{
@@ -12,4 +12,8 @@ export const login=(obj)=>(dispatch)=>{
         console.log(err.message)
         return dispatch({type:LOGIN_FAILURE})
     })
+}
+
+export const logout=()=>(dispatch)=>{
+    dispatch({type:LOGOUT_REQUEST})
 }
